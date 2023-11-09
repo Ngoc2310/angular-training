@@ -1,0 +1,28 @@
+<div mat-dialog-content>
+    <div>
+        <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Title</mat-label>
+            <input matInput [formControl]="name">
+        </mat-form-field>
+    </div>
+
+    <div class="flex">
+        <div *ngFor="let item of months; let i = index">
+            <mat-form-field class="w-100" appearance="outline">
+                <mat-label>{{item}}</mat-label>
+                <input matInput [formControl]="getMonthControl(i)">
+            </mat-form-field>
+        </div>
+    </div>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button
+            cdkFocusInitial
+            (click)="onSave()"
+    >
+        Save
+    </button>
+</div>
+
+
