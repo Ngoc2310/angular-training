@@ -19,6 +19,7 @@
 <div mat-dialog-actions>
     <button mat-button
             cdkFocusInitial
+            [disabled]="dynamicForm.invalid"
             (click)="onSave()"
     >
         Save

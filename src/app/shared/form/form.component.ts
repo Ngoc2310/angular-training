@@ -1,6 +1,6 @@
 import { Component, Inject } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { FormArray, FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { LocalStorageService } from "../services/local-storage.service";
 import { AppService, Income } from "../../app.service";
 
@@ -22,7 +22,7 @@ export class FormComponent {
 
     months = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
     dynamicForm!: FormGroup;
-    name = new FormControl("");
+    name = new FormControl("", [Validators.required]);
 
     constructor(
         public dialogRef: MatDialogRef<FormComponent>,
@@ -42,7 +42,10 @@ export class FormComponent {
     }
 
     buildForm(dataEdit?: any) {
-        const formControls = this.months.map(month => this.formBuilder.control(""));
+      const formControls = this.months.map(month =>
+        this.formBuilder.control("", [Validators.required, Validators.pattern(/^\d+$/)])
+      );
+
 
         this.dynamicForm = this.formBuilder.group({
             months: this.formBuilder.array(formControls),

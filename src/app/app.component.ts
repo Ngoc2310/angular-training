@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
     dataExpense: any[] = [];
     keyLocalStorage = "income";
     keyLocalStorage2 = "expense";
+    pastFiveYears: any[] = [];
 
     actionDefault = [
         {
@@ -35,10 +36,12 @@ export class AppComponent implements OnInit {
         },
     ];
 
+    selectedYear!: number;
     actions = this.actionDefault;
     totalIncome: any = 0;
     totalExpense: any = 0;
     modifyExpense: boolean = false;
+    budget: any = 0;
 
     constructor(
         public dialog: MatDialog,
@@ -49,6 +52,7 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         this.appService.fetchFromLocalStorage();
+        this.countYears();
 
         this.appService.get().subscribe((response) => {
             this.dataIncome = response;
@@ -67,6 +71,16 @@ export class AppComponent implements OnInit {
                 return acc + sum;
             }, 0);
         });
+    }
+
+    countYears() {
+      var currentYear = new Date().getFullYear();
+          var lastYear = [];
+          
+          for (let i = 0; i < 5; i++) {
+            lastYear.push(currentYear - i - 1);
+          }
+          this.pastFiveYears = lastYear
     }
 
     openMenu(event: any, item?: number) {

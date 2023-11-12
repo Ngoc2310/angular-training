@@ -27,7 +27,15 @@
 
 <div class="content" role="main">
 
-    year:
+  <mat-form-field appearance="outline">
+    <mat-label>Years</mat-label>
+    <mat-select [(ngModel)]="selectedYear" name="selectedYear">
+      <mat-option *ngFor="let year of pastFiveYears" [value]="year">
+        {{ year }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
     <div class="income">
         <div class="table">
             <div class="title border" (contextmenu)="add($event, false)">
@@ -85,6 +93,12 @@
             <div class="month border w-100">
                 {{totalExpense}}
             </div>
+        </div>
+        <div class="table">
+          <div class="title border" [ngStyle]="{ 'flex-shrink': 0 }">Budget</div>
+          <div class="month border w-100">
+            {{ totalIncome - totalExpense }}
+          </div>
         </div>
     </div>
 

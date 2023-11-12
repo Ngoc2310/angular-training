@@ -10,6 +10,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatMenuModule } from "@angular/material/menu";
+import { MatSelectModule } from "@angular/material/select";
 
 
 const MODULES: any[] = [
@@ -27,6 +28,7 @@ const MODULES: any[] = [
     FormsModule,
     MatButtonModule,
     MatDialogModule,
+    MatSelectModule
 ];
 
 const COMPONENTS: any[] = [FormComponent];
